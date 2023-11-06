@@ -37,9 +37,23 @@ extension APIClient {
                 throw Failure()
             }
 
+            if let error = Self.checkError(in: httpResponse) {
+                throw error
+            }
+
             return httpResponse.statusCode
         }
     )
+
+    private static func checkError(in response: HTTPURLResponse) -> Error? {
+        switch response.statusCode {
+        case 300...599:
+            return NetworkError.error(response.statusCode)
+
+        default:
+            return nil
+        }
+    }
 }
 
 private struct Answer: Encodable {
