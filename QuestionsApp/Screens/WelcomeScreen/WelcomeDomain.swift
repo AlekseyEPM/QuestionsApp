@@ -107,7 +107,7 @@ struct WelcomeDomain: Reducer {
 
     static func errorAlert(with error: Error) -> AlertState<AlertAction> {
         AlertState(
-            title: TextState("Oops!"),
+            title: TextState("Failure"),
             message: TextState(error.localizedDescription),
             buttons: [
                 .default(TextState("Retry"), action: .send(.retry))
