@@ -156,7 +156,7 @@ struct QuestionDomain: Reducer {
 
     static func errorAlert(with error: Error) -> AlertState<AlertAction> {
         AlertState(
-            title: TextState("Oops!"),
+            title: TextState("Failure"),
             message: TextState(error.localizedDescription),
             buttons: [
                 .default(TextState("Retry"), action: .send(.retry)),
@@ -167,7 +167,7 @@ struct QuestionDomain: Reducer {
 
     static var successAlert: AlertState<AlertAction> {
         AlertState(
-            title: TextState("Success"),
+            title: TextState("Success!"),
             buttons: [
                 .default(TextState("Close"), action: .send(.close))
             ]
